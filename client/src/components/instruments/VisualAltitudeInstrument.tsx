@@ -8,7 +8,7 @@ export default function VisualAltitudeInstrument({ value = 0 }: { value: number 
         <div className="altitude-gauge-tick">2000</div>
         <div className="altitude-gauge-tick">1000</div>0
       </div>
-      <div className="altitude-gauge-dial" >{value}</div>
+      <div className="altitude-gauge-dial">{value}</div>
     </div>
   );
 }

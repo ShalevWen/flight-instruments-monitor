@@ -53,3 +53,27 @@ code {
   border: 3px solid red;
   opacity: .7;
 }
+
+.adi-gauge-container {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: clip;
+}
+
+.adi-gauge {
+  background: green;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid black;
+  border-radius: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.adi-gauge-sky {
+  width: 100%;
+  /* height: 100%; */
+  background-color: blue;
+}

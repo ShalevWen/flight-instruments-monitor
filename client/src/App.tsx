@@ -15,7 +15,7 @@ function App() {
   const values: Values = {
     altitude: 1000,
     his: 50,
-    adi: 130,
+    adi: 0,
   };
   let view = selectedView === "TEXT" ? TextualDashboard(values) : VisualDashboard(values);
   return (
