@@ -13,7 +13,7 @@ type Values = {
 function App() {
   const [selectedView, setSelectedView] = React.useState<string>("TEXT");
   const values: Values = {
-    altitude: 100,
+    altitude: 1000,
     his: 50,
     adi: 130,
   };

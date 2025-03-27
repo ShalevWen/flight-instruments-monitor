@@ -16,3 +16,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.altitude-gauge-container {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: clip;
+}
+
+.altitude-gauge {
+  background: linear-gradient(to bottom, lightblue, white);
+  width: 95%;
+  height: 30em;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.altitude-gauge-tick {
+  height: 0px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.altitude-gauge-dial {
+  height: 0px;
+  width: 100%;
+  padding-left: 10px;
+  position: absolute;
+  bottom: 0%;
+  border: 3px solid red;
+  opacity: .7;
+}
