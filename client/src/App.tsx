@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container, Paper, Stack } from "@mui/material";
+import TopMenu from "./components/TopMenu";
+import VisualDashboard from "./components/VisualDashboard";
+import TextualDashboard from "./components/TextualDashboard";
+
+type Values = {
+  altitude: number; // 0 to 3000
+  his: number; // 0 to 360
+  adi: number; // -100 to 100
+};
 
 function App() {
+  const [selectedView, setSelectedView] = React.useState<string>("TEXT");
+  const values: Values = {
+    altitude: 100,
+    his: 50,
+    adi: 130,
+  };
+  let view = selectedView === "TEXT" ? TextualDashboard(values) : VisualDashboard(values);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="xl" sx={{ height: "100%" }}>
+      <Paper sx={{ padding: "10px", height: "100%" }}>
+        <Stack direction="column" alignItems="center" spacing={2}>
+          <TopMenu setSelectedView={setSelectedView} />
+          {view}
+        </Stack>
+      </Paper>
+    </Container>
   );
 }
 
