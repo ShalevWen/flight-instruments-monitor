@@ -4,6 +4,7 @@ import flightDataService from "../services/flightData.service";
 let router = express.Router();
 
 router.post("/storeData", (req, res) => {
+  console.log(req.body)
   if (!req.body.altitude || !req.body.his || !req.body.adi) {
     res.status(400).send("missing values");
     return;

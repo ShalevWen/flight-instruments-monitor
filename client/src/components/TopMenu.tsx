@@ -3,28 +3,29 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 
 type TopMenuParams = {
   setSelectedView: React.Dispatch<React.SetStateAction<string>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function TopMenu(params: TopMenuParams) {
+export default function TopMenu(props: TopMenuParams) {
   return (
     <ButtonGroup variant="contained">
       <Button
         onClick={() => {
-          params.setSelectedView("TEXT");
+          props.setSelectedView("TEXT");
         }}
       >
         Text
       </Button>
       <Button
         onClick={() => {
-          params.setSelectedView("VISUAL");
+          props.setSelectedView("VISUAL");
         }}
       >
         Visual
       </Button>
       <Button
         onClick={() => {
-          console.warn("Not implemented yet");
+          props.setOpen(true);
         }}
       >
         +
