@@ -1,5 +1,6 @@
 // Import the 'express' module
 import express from "express";
+import mongoose from "mongoose";
 
 // Create an Express application
 const app = express();
@@ -7,11 +8,16 @@ const app = express();
 // Set the port number for the server
 const port = 8000;
 
-// Define a route for the root path ('/')
-app.get("/", (req, res) => {
-  // Send a response to the client
-  res.send("Hello, TypeScript + Node.js + Express!");
-});
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1/FIM");
+
+// Define a route for API calls
+app.use("/api", require("./routes/api.route"));
+
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
