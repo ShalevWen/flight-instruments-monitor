@@ -19,7 +19,7 @@ function App() {
   };
   let view = selectedView === "TEXT" ? TextualDashboard(values) : VisualDashboard(values);
   return (
-    <Container maxWidth="xl" sx={{ height: "100%" }}>
+    <Container maxWidth="xl" sx={{ height: "100%", paddingTop: "10px", paddingBottom: "10px" }}>
       <Paper sx={{ padding: "10px", height: "100%" }}>
         <Stack direction="column" alignItems="center" spacing={2}>
           <TopMenu setSelectedView={setSelectedView} />
