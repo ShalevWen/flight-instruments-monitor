@@ -23,13 +23,24 @@ export default function InputModal(props: InputModalParams) {
   const [altitude, setAltitude] = React.useState<number>(0);
   const [his, setHis] = React.useState<number>(0);
   const [adi, setAdi] = React.useState<number>(0);
+  const [altitudeError, setAltitudeError] = React.useState<boolean>(false);
+  const [hisError, setHisError] = React.useState<boolean>(false);
+  const [adiError, setAdiError] = React.useState<boolean>(false);
 
-  function getHandler(setState: React.Dispatch<React.SetStateAction<number>>) {
+  function getHandler(
+    setValue: React.Dispatch<React.SetStateAction<number>>,
+    setError: React.Dispatch<React.SetStateAction<boolean>>,
+    minValue: number,
+    maxValue: number
+  ) {
     const handler: React.ChangeEventHandler = (e: React.ChangeEvent) => {
       const target = e.target as EventTarget & (HTMLInputElement | HTMLTextAreaElement);
-      const value = Number.parseFloat(target.value);
-      if (!Number.isNaN(value)) {
-        setState(value);
+      const newValue = Number.parseFloat(target.value);
+      if (target.value.length > 0 && !Number.isNaN(newValue) && minValue <= newValue && newValue <= maxValue) {
+        setValue(newValue);
+        setError(false);
+      } else {
+        setError(true);
       }
     };
     return handler;
@@ -37,6 +48,7 @@ export default function InputModal(props: InputModalParams) {
 
   function submitHandler(e: React.FormEvent) {
     e.preventDefault();
+    if (altitudeError || hisError || adiError) return;
     props.setData({ altitude, his, adi });
     props.setOpen(false);
   }
@@ -49,12 +61,37 @@ export default function InputModal(props: InputModalParams) {
       }}
     >
       <Box sx={style}>
-        <form
-          onSubmit={submitHandler}
-        >
-          <TextField label="altitude" variant="outlined" fullWidth margin="normal" onChange={getHandler(setAltitude)} />
-          <TextField label="his" variant="outlined" fullWidth margin="normal" onChange={getHandler(setHis)} />
-          <TextField label="adi" variant="outlined" fullWidth margin="normal" onChange={getHandler(setAdi)} />
+        <form onSubmit={submitHandler}>
+          <TextField
+            label="Altitude"
+            variant="outlined"
+            fullWidth
+            defaultValue={altitude}
+            error={altitudeError}
+            helperText={altitudeError ? "Altitude should be in the range (0, 3000)" : ""}
+            margin="normal"
+            onChange={getHandler(setAltitude, setAltitudeError, 0, 3000)}
+          />
+          <TextField
+            label="HIS"
+            variant="outlined"
+            fullWidth
+            defaultValue={his}
+            error={hisError}
+            helperText={hisError ? "HIS should be in the range (0, 360)" : ""}
+            margin="normal"
+            onChange={getHandler(setHis, setHisError, 0, 360)}
+          />
+          <TextField
+            label="ADI"
+            variant="outlined"
+            fullWidth
+            defaultValue={adi}
+            error={adiError}
+            helperText={adiError ? "ADI should be in the range (-100, 100)" : ""}
+            margin="normal"
+            onChange={getHandler(setAdi, setAdiError, -100, 100)}
+          />
           <Button variant="contained" color="primary" type="submit">
             confirm
           </Button>
