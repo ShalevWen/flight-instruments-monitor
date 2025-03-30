@@ -1,3 +1,10 @@
+## Prerequisites
+
+To run the server you need the following programs installed on your machine:
+
+1. [NodeJS](https://nodejs.org/en/download)
+2. [MongoDB](https://www.mongodb.com/try/download/community)
+
 ## Installation
 
 1. Clone the repository:
